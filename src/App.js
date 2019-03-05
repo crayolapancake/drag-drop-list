@@ -47,11 +47,14 @@ export default class Draggable extends React.Component {
     console.log('do a thing');
     console.log('points', clientX, clientY);
 
-    //the problem is here:
+    //REF PROBLEM!!!
     this.feelingElement.focus()
+
+    // how to pass in this ref to handleMouseDown?
     // this.feelingElement.handleMouseDown(clientX, clientY)
   }
 
+  //  PASSING IN ID PROBLEM
   handleMouseDown = ( {clientX, clientY}, id) => {
     console.log('id', id);
     console.log('handleMouseDown');
