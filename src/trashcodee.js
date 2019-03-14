@@ -1,3 +1,54 @@
+<Draggable>
+  <Happy />
+</Draggable>
+
+<Draggable>
+  <Sad />
+</Draggable>
+
+<Draggable>
+  <Optimistic />
+</Draggable>
+
+<Draggable>
+  <Fearful />
+</Draggable>
+
+<Draggable>
+  <Depressed />
+</Draggable>
+
+<Draggable>
+  <Worried />
+</Draggable>
+
+<Draggable>
+  <Stressed />
+</Draggable>
+
+<Draggable>
+  <Anxious />
+</Draggable>
+
+<Draggable>
+  <Confident />
+</Draggable>
+
+<Draggable>
+  <Valued />
+</Draggable>
+
+<Draggable>
+  <Frustrated />
+</Draggable>
+
+<Draggable>
+  <Angry />
+</Draggable>
+
+
+
+
 <div className="parent">
   <Container
     // key={feeling.id}

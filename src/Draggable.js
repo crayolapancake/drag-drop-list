@@ -19,16 +19,14 @@ state = {
 
 
   componentDidMount() {
-    // console.log('didmount');
-    // document.querySelector('Container').focus();
-    // this.feelingElement.focus();
+    console.log('didmount');
   }
 
   componentWillUnmount() {
     window.removeEventListener('mousemove', this.handleMouseMove);
     window.removeEventListener('mouseup', this.handleMouseUp);
   }
-  // 
+
   // toggle = (id) => {
   //   console.log("Toggle: hovered on id", id);
   //   // this.setState((prevState) =>({clickedElementID : id}))
@@ -106,7 +104,6 @@ handleMouseMove = ({ clientX, clientY }) => {
 
     return (
       <Container
-        // onMouseOver={this.toggle(id)}
         onMouseDown={this.handleMouseDown}
         x={translateX}
         y={translateY}
@@ -124,8 +121,9 @@ const Container = styled.div.attrs({
     transform: `translate(${x}px, ${y}px)`
   }),
 })`
+  display: flex;
+${'' /* block */}
   cursor: grab;
-  border: 2px solid blue;
   width: 300px;
   height: 50px;
   margin-top: 10px;

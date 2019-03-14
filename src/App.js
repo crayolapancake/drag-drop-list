@@ -13,8 +13,7 @@ import Confident from './Emotions/Confident';
 import Valued from './Emotions/Valued';
 import Frustrated from './Emotions/Frustrated';
 import Angry from './Emotions/Angry';
-
-
+import Emotions from './Emotions/Emotions';
 
 
 export default class App extends React.Component {
@@ -23,51 +22,7 @@ export default class App extends React.Component {
     return (
       <div>
         <Draggable>
-          <Happy />
-        </Draggable>
-
-        <Draggable>
-          <Sad />
-        </Draggable>
-
-        <Draggable>
-          <Optimistic />
-        </Draggable>
-
-        <Draggable>
-          <Fearful />
-        </Draggable>
-
-        <Draggable>
-          <Depressed />
-        </Draggable>
-
-        <Draggable>
-          <Worried />
-        </Draggable>
-
-        <Draggable>
-          <Stressed />
-        </Draggable>
-
-        <Draggable>
-          <Anxious />
-        </Draggable>
-
-        <Draggable>
-          <Confident />
-        </Draggable>
-
-        <Draggable>
-          <Valued />
-        </Draggable>
-
-        <Draggable>
-          <Frustrated />
-        </Draggable>
-
-        <Draggable>
-          <Angry />
+          <Emotions />
         </Draggable>
       </div>
     );
