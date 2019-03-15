@@ -14,6 +14,7 @@ import Valued from './Emotions/Valued';
 import Frustrated from './Emotions/Frustrated';
 import Angry from './Emotions/Angry';
 import Emotions from './Emotions/Emotions';
+import './Emotions.css';
 
 
 export default class App extends React.Component {
@@ -21,6 +22,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
+        <div className="circle">banana<div/>
         <Draggable>
           <Emotions />
         </Draggable>

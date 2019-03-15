@@ -9,18 +9,18 @@ class Emotions extends Component {
 
     this.state = {
       words: [
-        {id: 1, emotion: "happy", weight: 8.3},
-        {id: 2, emotion: "sad", weight: 8.3},
-        {id: 3, emotion: "optimistic", weight: 8.3},
-        {id: 4, emotion: "fearful", weight: 8.3},
-        {id: 5, emotion: "depressed", weight: 8.3},
-        {id: 6, emotion: "worried", weight: 8.3},
-        {id: 7, emotion: "stressed", weight: 8.3},
-        {id: 8, emotion: "anxious", weight: 8.3},
-        {id: 9, emotion: "confident", weight: 8.3},
-        {id: 10, emotion: "valued", weight: 8.3},
-        {id: 11, emotion: "frustrated", weight: 8.3},
-        {id: 12, emotion: "peckish", weight: 8.3}
+        {id: 1, emotion: "happy 1", weight: 8.3},
+        {id: 2, emotion: "sad 2", weight: 8.3},
+        {id: 3, emotion: "optimistic 3", weight: 8.3},
+        {id: 4, emotion: "fearful 4", weight: 8.3},
+        {id: 5, emotion: "depressed 5", weight: 8.3},
+        {id: 6, emotion: "worried 6", weight: 8.3},
+        {id: 7, emotion: "stressed 7", weight: 8.3},
+        {id: 8, emotion: "anxious 8", weight: 8.3},
+        {id: 9, emotion: "confident 9", weight: 8.3},
+        {id: 10, emotion: "valued 10", weight: 8.3},
+        {id: 11, emotion: "frustrated 11", weight: 8.3},
+        {id: 12, emotion: "peckish 12", weight: 8.3}
       ],
       clickedWordID: null,
       weight: 'banana',
@@ -77,57 +77,61 @@ class Emotions extends Component {
     }
   };
 
+   calcCircleCoords = (ratio, midX, midY, radius) => {
+     // radiens: 2*Math.PI*ratio
+     // rotating always uses sin and cos
+     // sin & cos 90 degress out (X and Y)
+     // ratio is angle
+    const xOff =  Math.cos(2*Math.PI*ratio);
+    const yOff =  Math.sin(2*Math.PI*ratio);
+    const x = midX + (radius * xOff);
+    const y = midY + (radius * yOff);
+
+    // this.setState ({
+    //   midX:
+    //   midY:
+    //   radius:
+    // })
+
+    return { x:x, y:y };
+  }
+
+  // get length of words array
   rotateElements = (index) => {
-    // translate: num along x axis, num along y axis.
-    if (index === 0) {
-      return 'rotate(270deg) translate(-150px, 230px)'
-    } if (index === 1) {
-      return 'rotate(300deg) translate(-20px, 300px)'
-    } if (index === 2) {
-      return 'rotate(320deg) translate(50px, 325px)'
-    } if (index === 3) {
-      return 'rotate(0deg) translate(220px, 305px)'
-    } if (index === 4) {
-      return 'rotate(30deg) translate(315px, 265px)'
-    }  if (index === 5) {
-      return 'rotate(60deg) translate(400px, 203px)'
-    }  if (index === 6) {
-      return 'rotate(90deg) translate(470px, 115px)'
-    }  if (index === 7) {
-      return 'rotate(300deg) translate(-520px, -0px)'
-    }  if (index === 8) {
-      return 'rotate(320deg) translate(-545px, 65px)'
-    } if (index === 9) {
-      return 'rotate(0deg) translate(-460px, 305px)'
-    } if (index === 10) {
-      return 'rotate(30deg) translate(-315px, 440px)'
-    } if (index === 11) {
-      return 'rotate(60deg) translate(-100px, 508px)'
-    }
-  };
+    console.log(this.state.words.length)
+    const ratio = index / this.state.words.length
+
+    console.log('rotate({ratio}turn)', ratio);
+    const thang = this.calcCircleCoords(ratio, 350,200,150);
+    return 'translate('+thang.x+'px, '+thang.y+'px) rotate('+(ratio)+'turn)'
+  }
+
 
   render() {
     return (
       <div className="parent-container">
+        <div className="circle"/>
+
         {this.state.words.map( (word, index) => {
           return <Draggable key={word.id}>
-            <ul
+            <div
+            className="draggable"
             id={word.id}
             onClick={() => { this.toggle(index) }}
             onMouseDown={this.handleMouseDown}
             style={{
-
               background: this.changeClickedColor(index),
               fontSize: this.changeFontSize(index),
               height: this.changeElementHeight(index),
+              position: 'absolute',
+              top : word.id,
+              left : word.id,
               transform: this.rotateElements(index),
-              }}
-          >
+            }}>
             {word.emotion}
-          </ul>
+          </div>
         </Draggable>
         })}
-        <div className="circle"/>
       </div>
 
     )
@@ -135,3 +139,34 @@ class Emotions extends Component {
 }
 
 export default Emotions;
+
+
+
+/* rotateElements = (index) => {
+  // translate: num along x axis, num along y axis.
+  if (index === 0) {
+    return 'rotate(270deg) translate(-150px, 230px)'
+  } if (index === 1) {
+    return 'rotate(300deg) translate(-20px, 300px)'
+  } if (index === 2) {
+  } if (index === 3) {
+    return 'rotate(0deg) translate(220px, 305px)'
+  } if (index === 4) {
+    return 'rotate(30deg) translate(315px, 265px)'
+  }  if (index === 5) {
+    return 'rotate(60deg) translate(400px, 203px)'
+  }  if (index === 6) {
+    return 'rotate(90deg) translate(470px, 115px)'
+  }  if (index === 7) {
+    return 'rotate(300deg) translate(-520px, -0px)'
+  }  if (index === 8) {
+    return 'rotate(320deg) translate(-545px, 65px)'
+  } if (index === 9) {
+    return 'rotate(0deg) translate(-460px, 305px)'
+  } if (index === 10) {
+    return 'rotate(30deg) translate(-315px, 440px)'
+  } if (index === 11) {
+    return 'rotate(60deg) translate(-100px, 508px)'
+  }
+};
+*/

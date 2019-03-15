@@ -5,12 +5,15 @@ export default class Draggable extends React.Component {
 state = {
       isDragging: false,
 
+      //starting point
       originalX: 0,
       originalY: 0,
 
+      //
       translateX: 0,
       translateY: 0,
 
+      // where is was before
       lastTranslateX: 0,
       lastTranslateY: 0,
 
@@ -18,34 +21,23 @@ state = {
     };
 
 
-  componentDidMount() {
-    console.log('didmount');
-  }
+
 
   componentWillUnmount() {
     window.removeEventListener('mousemove', this.handleMouseMove);
     window.removeEventListener('mouseup', this.handleMouseUp);
   }
 
-  // toggle = (id) => {
-  //   console.log("Toggle: hovered on id", id);
-  //   // this.setState((prevState) =>({clickedElementID : id}))
-  //   this.setState({clickedElementID : id})
-  // }
-
 
   handleMouseDown = ({ clientX, clientY }) => {
-    console.log('clickedElementID:', this.state.clickedElementID);
-
     window.addEventListener('mousemove',this.handleMouseMove);
     window.addEventListener('mouseup', this.handleMouseUp);
 
-    // only want to move one elemet: if clickedElementID equals id of element
-    // && clickedElementID == id
     if (this.props.onDragStart ) {
     //  a subscriber for the beginning of the drag interaction.
       this.props.onDragStart();
     }
+    //console.log("Setting state in dragable "+clientX+" "+clientY);
 
     this.setState({
       originalX: clientX,
@@ -59,9 +51,29 @@ handleMouseMove = ({ clientX, clientY }) => {
     const { isDragging } = this.state;
     const { onDrag } = this.props;
 
+    const distance = () => {
+      console.log('state', this.state);
+      const x =  this.state.translateX
+      const y = this.state.translateY
+      console.log('x', x);
+      console.log('y', y);
+
+      return Math.sqrt( ( x * x ) + (y * y) )
+
+    }
+
+    console.log("distance", distance());
+
+
     if (!isDragging) {
       return;
     }
+
+
+
+    // square root of (xA - xB) + (yB - yA)
+    // gives how much distance a petal has travelled
+    //then, change it's height based on a ratio of distance and the size of the yellow circle
 
     this.setState(prevState => ({
       translateX: clientX - prevState.originalX + prevState.lastTranslateX,
@@ -120,14 +132,14 @@ const Container = styled.div.attrs({
   style: ({ x, y }) => ({
     transform: `translate(${x}px, ${y}px)`
   }),
+
+
 })`
-  display: flex;
-${'' /* block */}
   cursor: grab;
   width: 300px;
   height: 50px;
-  margin-top: 10px;
-  margin-left: 10px;
+  margin: 0;
+  position: absolute;
 
   &:focus {background-color: aliceblue;}
 
